@@ -1,8 +1,9 @@
 const { Sequelize } = require("sequelize");
 const { DataTypes } = require("sequelize");
+const sequelize = require("../index");
+const moment = require("moment");
 
-module.exports = (sequelize) => {
-  sequelize.define("user", {
+const User = sequelize.define("user", {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -15,15 +16,18 @@ module.exports = (sequelize) => {
     },
     dob: {
       allowNull: false,
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
+      get: function() {
+        return moment(this.getDataValue('dob')).format('DD-MM-YYYY')
+     }
     },
     address: {
       allowNull: false,
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
     },
     description: {
       allowNull: false,
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -36,4 +40,5 @@ module.exports = (sequelize) => {
       defaultValue: Sequelize.NOW,
     },
   });
-};
+
+module.exports = User;

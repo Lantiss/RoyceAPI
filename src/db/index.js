@@ -11,12 +11,4 @@ const sequelize = new Sequelize({
   benchmark: true,
 });
 
-const modelDefiners = [require("./models/user.model")];
-
-// We define all models according to their files.
-for (const modelDefiner of modelDefiners) {
-  modelDefiner(sequelize);
-}
-
-// Export the sequelize connection instance to be used around our app.
 module.exports = sequelize;
