@@ -3,8 +3,8 @@ const errorMiddleware = (err, req, res, next) => {
   const errorMessage = {
     status: false,
     message: err.message || "Oops, something went wrong",
-    data: err,
   };
+  (process.env.NODE_ENV == "DEV") && (errorMessage.data = err);
   res.status(err.status || 500).json(errorMessage);
 };
 

@@ -13,6 +13,7 @@ const createUser = async (req, res, next) => {
     const resp = await userDAO.saveUser(user);
     res.status(201).json({
       status: true,
+      message: "User created",
       data: resp,
     });
   } catch (error) {

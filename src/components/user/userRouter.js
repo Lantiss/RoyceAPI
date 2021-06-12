@@ -8,14 +8,18 @@ const userRouter = (router) => {
       userValidator.createUserValidation,
       userController.createUser
     )
-    // .get("/users", ) 2
+    .get("/users", userValidator.listUserValidation, userController.listUser)
     .get(
       "/user/:id",
       userValidator.getUserByIdValidation,
       userController.getUserById
+    )
+    // .patch("/user/:id", ) 3
+    .delete(
+      "/user/:id",
+      userValidator.getUserByIdValidation,
+      userController.deleteUser
     );
-  // .patch("/user/:id", ) 3
-  // .delete("/user/:id", ) 1
 };
 
 module.exports = { userRouter };

@@ -7,8 +7,9 @@ const sequelize = new Sequelize({
   username: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
   port: process.env.DB_PORT,
-  logQueryParameters: true,
-  benchmark: true,
+  logQueryParameters: false,
+  logging: false,
+  benchmark: false,
 });
 
 module.exports = sequelize;

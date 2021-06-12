@@ -1,13 +1,13 @@
 const { userDAO } = require("../../../DAO");
 
-const getUserById = async (req, res, next) => {
+const deleteUser = async (req, res, next) => {
   try {
     const id = req.params.id;
-    const resp = await userDAO.getUserById(id);
+    const resp = await userDAO.deleteUser(id);
 
-    res.status(201).json({
+    res.status(200).json({
       status: true,
-      message: "User found",
+      message: "User deleted",
       data: resp,
     });
   } catch (error) {
@@ -16,4 +16,4 @@ const getUserById = async (req, res, next) => {
   }
 };
 
-module.exports = { getUserById };
+module.exports = { deleteUser };
