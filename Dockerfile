@@ -7,8 +7,6 @@ COPY package*.json ./
 COPY . .
 
 ENV PORT 5000
-ENV BD_HOST = localhost
-ENV NODE_ENV = DEV
 
 EXPOSE ${PORT}
 

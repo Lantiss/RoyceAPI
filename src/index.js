@@ -3,10 +3,12 @@ const express = require("express");
 const { config } = require("./config");
 const sequelize = require("./db");
 const { router } = require("./components/router/router");
+const helmet = require("helmet");
 const { errorMiddleware } = require("./middleware/errorMiddleware");
 
 const app = express();
 
+app.use(helmet());
 app.use(express.json());
 app.use("/api/v1/", router);
 app.use(errorMiddleware);

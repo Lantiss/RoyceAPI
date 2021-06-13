@@ -6,7 +6,7 @@ const listUser = async (req, res, next) => {
     const resp = await userDAO.listUser(page);
     res.status(200).json({
       status: true,
-      message: "User deleted",
+      message: "All users listed",
       data: resp,
     });
   } catch (error) {
