@@ -14,7 +14,11 @@ const userRouter = (router) => {
       userValidator.getUserByIdValidation,
       userController.getUserById
     )
-    // .patch("/user/:id", ) 3
+    .patch(
+      "/user/:id",
+      userValidator.updateUserValidation,
+      userController.updateUser
+    )
     .delete(
       "/user/:id",
       userValidator.getUserByIdValidation,

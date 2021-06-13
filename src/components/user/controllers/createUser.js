@@ -2,14 +2,7 @@ const { userDAO } = require("../../../DAO");
 
 const createUser = async (req, res, next) => {
   try {
-    const body = req.body;
-    console.log(body);
-    const user = {
-      name: body.name,
-      dob: body.dob,
-      address: body.address,
-      description: body.description,
-    };
+    const user = req.body;
     const resp = await userDAO.saveUser(user);
     res.status(201).json({
       status: true,

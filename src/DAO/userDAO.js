@@ -31,8 +31,31 @@ const listUser = async (page) => {
     const userResp = await User.findAndCountAll({ limit, offset });
 
     userResp.total_pages = Math.ceil(userResp.count / limit);
-    userResp.page_num = ((offset / limit) + 1);
+    userResp.page_num = offset / limit + 1;
 
+    return userResp;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const updateUser = async (changes, id) => {
+  try {
+    const userResp = await User.findByPk(id);
+    if (!userResp) {
+      throw {
+        message: "User doesn't exist",
+        status: 400,
+      };
+    }
+
+    const keys = Object.keys(changes);
+    keys.map((key) => {
+      userResp[key] = changes[key];
+    });
+
+    console.log(userResp);
+    await userResp.save();
     return userResp;
   } catch (error) {
     throw error;
@@ -60,4 +83,5 @@ module.exports = {
   getUserById,
   listUser,
   deleteUser,
+  updateUser,
 };
