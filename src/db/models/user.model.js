@@ -12,7 +12,7 @@ const User = sequelize.define("user", {
   },
   name: {
     allowNull: false,
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(20),
   },
   dob: {
     allowNull: false,
@@ -23,11 +23,11 @@ const User = sequelize.define("user", {
   },
   address: {
     allowNull: false,
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(50),
   },
   description: {
     allowNull: false,
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(100),
   },
   createdAt: {
     type: DataTypes.DATE,
