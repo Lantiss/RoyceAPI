@@ -15,8 +15,19 @@ app.use(errorMiddleware);
 
 app.listen(config.port, config.host, async () => {
   try {
-    await sequelize.authenticate();
-    await sequelize.sync();
+    let retries = 7;
+    while (retries) {
+      try {
+        await sequelize.authenticate();
+        await sequelize.sync();
+        break;
+      } catch (err) {
+        retries -= 1;
+        console.log(`retries left: ${retries}`);
+        // wait 5 seconds
+        await new Promise((res) => setTimeout(res, 9000));
+      }
+    }
     console.info(`Server running at: http://${config.host}:${config.port}`);
   } catch (error) {
     console.error(error);
