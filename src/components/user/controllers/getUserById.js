@@ -5,7 +5,7 @@ const getUserById = async (req, res, next) => {
     const id = req.params.id;
     const resp = await userDAO.getUserById(id);
 
-    res.status(201).json({
+    res.status(200).json({
       status: true,
       message: "User found",
       data: resp,
